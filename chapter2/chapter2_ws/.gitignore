@@ -1,0 +1,24 @@
+# General
+*~
+\#*#
+*.o
+*.aux
+*.dvi
+*.log
+*.synctex.gz
+*.pdf
+\.nfs0000*
+\..*
+
+# for ROS,ROS2
+build/*
+install/*
+log/*
+
+# for Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/*
+
+.vscode/
