@@ -38,7 +38,7 @@ public class GoalPublisherMulti : MonoBehaviour
         msg.pose.pose.orientation.x = 0.0;
         msg.pose.pose.orientation.y = 0.0;
         msg.pose.pose.orientation.z = 0.0;
-        msg.pose.pose.orientation.w = 0.1;
+        msg.pose.pose.orientation.w = 1.0;
         var topicName = "/" + multiNavigationController.SelectedRobot.rosNamespace + initialPoseTopicName;
         ros.Publish(topicName, msg);
         Debug.Log("Initial Pose: " + msg.pose);
