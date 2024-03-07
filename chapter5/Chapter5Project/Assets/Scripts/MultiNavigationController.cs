@@ -5,8 +5,20 @@ using TMPro;
 [System.Serializable]
 public class NavigationRobot {
     public string rosNamespace;
+    // public string frameName;
+    public GameObject parentFrameObj;
     public Color color;
     public GameObject turtlebot3Obj;
+    public GameObject ParentFrameObj {
+        get { return parentFrameObj; }
+        set{ parentFrameObj = value; }
+    }
+    public GameObject FrameObj {
+        get { return frameObj; }
+        set{ frameObj = value; }
+    }
+    
+    public GameObject frameObj;
 }
 
 public class MultiNavigationController : MonoBehaviour
