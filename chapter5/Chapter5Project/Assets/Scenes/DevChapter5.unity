@@ -2108,10 +2108,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1864091003}
-  - component: {fileID: 1864091005}
   - component: {fileID: 1864091006}
   m_Layer: 0
-  m_Name: TFPoseAttacher
+  m_Name: TFPoseCalculator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2132,22 +2131,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1864091005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864091001}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b10bd98690bb88ba57d3f7c33d2ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turtlebot3Obj: {fileID: 1670145315}
-  mapTransformer: {fileID: 949269407}
-  parentFrameName: map
-  targetFrameName: base_footprint
 --- !u!114 &1864091006
 MonoBehaviour:
   m_ObjectHideFlags: 0
