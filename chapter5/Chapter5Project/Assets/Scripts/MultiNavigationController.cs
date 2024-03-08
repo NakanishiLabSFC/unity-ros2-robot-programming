@@ -19,6 +19,10 @@ public class NavigationRobot {
     }
     
     public GameObject frameObj;
+    public Pose mapFramePose = new Pose();
+    public Pose odomFramePose = new Pose();
+
+
 }
 
 public class MultiNavigationController : MonoBehaviour
