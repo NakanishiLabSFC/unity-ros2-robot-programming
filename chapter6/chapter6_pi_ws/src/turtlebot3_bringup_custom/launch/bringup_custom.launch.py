@@ -31,8 +31,7 @@ def generate_launch_description():
     
     scan_frame_id = 'base_scan' #<<編集箇所-4
     if(len(ROS_NAMESPACE) != 0):
-        #scan_frame_id = ROS_NAMESPACE + '/' + scan_frame_id
-        scan_frame_id = ROS_NAMESPACE + '_' + scan_frame_id
+        scan_frame_id = ROS_NAMESPACE + '/' + scan_frame_id
 
     return LaunchDescription([
         DeclareLaunchArgument(
