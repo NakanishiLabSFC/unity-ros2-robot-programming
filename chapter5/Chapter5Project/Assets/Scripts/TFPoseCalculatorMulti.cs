@@ -6,23 +6,23 @@ public class TFPoseCalculatorMulti : MonoBehaviour
 {
     [SerializeField] MapTransformer mapTransformer;
     [SerializeField] MultiNavigationController multiNavigationController;
-    [SerializeField] string parentFrameBaseName;
-    [SerializeField] string targetFrameBaseName;
+    [SerializeField] string mapChildFrameBaseName = "odom";
+    [SerializeField] string odomChildFrameBaseName = "base_footprint";
     ROSConnection ros;
     string topicName = "/tf";
-    Transform parentFrameTransform; 
+    Transform mapFrameTransform; 
 
     void Start()
     {
         ros = ROSConnection.GetOrCreateInstance();
         ros.Subscribe<TFMessageMsg>(topicName, ReceiveTFMsg);
         var empty = new GameObject();
-        parentFrameTransform = empty.transform;
+        mapFrameTransform = empty.transform;
 
         foreach (var robot in multiNavigationController.NavigationRobots)
         {
-            robot.ParentFrameName = robot.rosNamespace + "/" + parentFrameBaseName;
-            robot.TargetFrameName = robot.rosNamespace + "/" + targetFrameBaseName;
+            robot.mapFrameName = robot.rosNamespace + "/" + mapChildFrameBaseName;
+            robot.odomFrameName = robot.rosNamespace + "/" + odomChildFrameBaseName;
         }
     }
 
@@ -30,11 +30,11 @@ public class TFPoseCalculatorMulti : MonoBehaviour
     {
         foreach (var robot in multiNavigationController.NavigationRobots)
         {
-            parentFrameTransform.position = robot.parentFramePose.position;
-            parentFrameTransform.rotation = robot.parentFramePose.rotation;
+            mapFrameTransform.position = robot.mapFramePose.position;
+            mapFrameTransform.rotation = robot.mapFramePose.rotation;
 
-            robot.turtlebot3Obj.transform.position = TFUtility.GetRelativePosition(parentFrameTransform, robot.targetFramePose.position) - mapTransformer.OriginPos;
-            robot.turtlebot3Obj.transform.rotation = TFUtility.GetRelativeRotation(parentFrameTransform, robot.targetFramePose.rotation);
+            robot.turtlebot3Obj.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, robot.odomFramePose.position) - mapTransformer.OriginPos;
+            robot.turtlebot3Obj.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, robot.odomFramePose.rotation);
         }
         
     }
@@ -45,10 +45,10 @@ public class TFPoseCalculatorMulti : MonoBehaviour
         {
             for (int i = 0; i < msg.transforms.Length; i++)
             {
-                if (msg.transforms[i].child_frame_id == robot.ParentFrameName) {
-                    robot.parentFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
-                } else if (msg.transforms[i].child_frame_id == robot.TargetFrameName) {
-                    robot.targetFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
+                if (msg.transforms[i].child_frame_id == robot.mapFrameName) {
+                    robot.mapFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
+                } else if (msg.transforms[i].child_frame_id == robot.odomFrameName) {
+                    robot.odomFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
                 } 
             }
         }  
