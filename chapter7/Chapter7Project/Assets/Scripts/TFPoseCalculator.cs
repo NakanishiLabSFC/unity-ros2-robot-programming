@@ -6,10 +6,10 @@ using RosMessageTypes.Tf2;
 
 public class TFPoseCalculator : MonoBehaviour
 {
-    [SerializeField] MapTransformer mapTransformer;
     [SerializeField] GameObject turtlebot3Obj;
     [SerializeField] string mapChildFrameName = "odom";
     [SerializeField] string odomChildFrameName = "base_footprint";
+    [SerializeField] float offsetTurtlebot3Height = 0.19f;
     ROSConnection ros;
     string topicName = "/tf";
     Transform mapFrameTransform; 
@@ -28,8 +28,11 @@ public class TFPoseCalculator : MonoBehaviour
     {
         mapFrameTransform.position = mapFramePose.position;
         mapFrameTransform.rotation = mapFramePose.rotation;
-
-        turtlebot3Obj.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
+        
+        var pos = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position);
+        turtlebot3Obj.transform.position = new Vector3(
+            pos.x, offsetTurtlebot3Height/2, pos.z
+        );
         turtlebot3Obj.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
     }
 

@@ -11,12 +11,13 @@ public class MapTransformer : MonoBehaviour
     [SerializeField] float resolution;
     [SerializeField] Vector2 origin;
     Vector3 originPos;
+
     void Start()
     {
         ReadMap();
     }
 
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     [ContextMenu("Transform Map")]
     void ReadMap()
     {
@@ -32,5 +33,5 @@ public class MapTransformer : MonoBehaviour
         Debug.Log("Map Origin: " + originPos);
         mapObj.transform.position = originPos;
     }
-#endif
+    #endif
 }
