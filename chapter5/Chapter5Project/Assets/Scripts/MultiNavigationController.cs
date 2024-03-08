@@ -5,7 +5,6 @@ using TMPro;
 [System.Serializable]
 public class NavigationRobot {
     public string rosNamespace;
-    // public string frameName;
     public GameObject parentFrameObj;
     public Color color;
     public GameObject turtlebot3Obj;
@@ -19,8 +18,18 @@ public class NavigationRobot {
     }
     
     public GameObject frameObj;
-    public Pose mapFramePose = new Pose();
-    public Pose odomFramePose = new Pose();
+    public Pose parentFramePose = new Pose();
+    public Pose targetFramePose = new Pose();
+    public string parentFrameName;
+    public string targetFrameName;
+    public string ParentFrameName {
+        get { return parentFrameName; }
+        set { parentFrameName = value; }
+    }
+    public string TargetFrameName {
+        get { return targetFrameName; }
+        set { targetFrameName = value; }
+    }
 
 
 }

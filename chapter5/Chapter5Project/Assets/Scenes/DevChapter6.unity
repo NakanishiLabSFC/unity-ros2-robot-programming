@@ -2259,23 +2259,27 @@ MonoBehaviour:
     color: {r: 0.11897531, g: 0.6415094, b: 0, a: 1}
     turtlebot3Obj: {fileID: 1670145315}
     frameObj: {fileID: 0}
-    mapFramePose:
+    parentFramePose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 0}
-    odomFramePose:
+    targetFramePose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 0}
+    parentFrameName: 
+    targetFrameName: 
   - rosNamespace: robot2
     parentFrameObj: {fileID: 0}
     color: {r: 0.86824155, g: 0.9056604, b: 0.252047, a: 1}
     turtlebot3Obj: {fileID: 1111716173}
     frameObj: {fileID: 0}
-    mapFramePose:
+    parentFramePose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 0}
-    odomFramePose:
+    targetFramePose:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 0}
+    parentFrameName: 
+    targetFrameName: 
 --- !u!4 &1199365614
 Transform:
   m_ObjectHideFlags: 0
@@ -3205,9 +3209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapTransformer: {fileID: 949269407}
-  parentFrameName: odom
-  targetFrameName: base_footprint
   multiNavigationController: {fileID: 1199365613}
+  parentFrameBaseName: odom
+  targetFrameBaseName: base_footprint
 --- !u!1 &1945604736
 GameObject:
   m_ObjectHideFlags: 0

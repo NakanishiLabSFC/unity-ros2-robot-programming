@@ -10,43 +10,44 @@ public class TFPoseCalculator : MonoBehaviour
     [SerializeField] GameObject turtlebot3Obj;
     [SerializeField] string parentFrameName;
     [SerializeField] string targetFrameName;
-    public class Pose {
-        public Vector3 position = new Vector3();
-        public Quaternion rotation = new Quaternion();
-    }
     ROSConnection ros;
     string topicName = "/tf";
-    Transform mapTransform; 
-    Pose mapFramePose = new Pose();
-    Pose odomFramePose = new Pose();
+    Transform parentFrameTransform; 
+    Pose parentFramePose = new Pose();
+    Pose targetFramePose = new Pose();
     
     void Start()
     {
         ros = ROSConnection.GetOrCreateInstance();
         ros.Subscribe<TFMessageMsg>(topicName, ReceiveTFMsg);
         var empty = new GameObject();
-        mapTransform = empty.transform; 
+        parentFrameTransform = empty.transform; 
     }
 
     void Update()
     {
-        mapTransform.position = mapFramePose.position;
-        mapTransform.rotation = mapFramePose.rotation;
+        parentFrameTransform.position = parentFramePose.position;
+        parentFrameTransform.rotation = parentFramePose.rotation;
 
-        turtlebot3Obj.transform.position = GetRelativePosition(odomFramePose.position) - mapTransformer.OriginPos;
-        turtlebot3Obj.transform.rotation = GetRelativeRotation(odomFramePose.rotation);
+        turtlebot3Obj.transform.position = TFUtility.GetRelativePosition(parentFrameTransform, targetFramePose.position) - mapTransformer.OriginPos;
+        turtlebot3Obj.transform.rotation = TFUtility.GetRelativeRotation(parentFrameTransform, targetFramePose.rotation);
     }
 
     void ReceiveTFMsg(TFMessageMsg msg)
     {
-        if (msg.transforms[0].header.frame_id == parentFrameName) {
-            mapFramePose = ConvertToUnityPose(msg.transforms[0].transform.translation, msg.transforms[0].transform.rotation);
-        } else if (msg.transforms[0].header.frame_id == targetFrameName) {
-            odomFramePose = ConvertToUnityPose(msg.transforms[0].transform.translation, msg.transforms[0].transform.rotation);
-        }   
+        for (int i = 0; i < msg.transforms.Length; i++)
+            {
+            if (msg.transforms[i].child_frame_id == parentFrameName) {
+                parentFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
+            } else if (msg.transforms[i].child_frame_id == targetFrameName) {
+                targetFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
+            }  
+        } 
     }
+}
 
-    Pose ConvertToUnityPose(Vector3Msg rosPosMsg, QuaternionMsg rosQuaternionMsg)
+public static class TFUtility {
+    public static Pose ConvertToUnityPose(Vector3Msg rosPosMsg, QuaternionMsg rosQuaternionMsg)
     {
         Pose unityPose = new Pose();
 
@@ -61,13 +62,13 @@ public class TFPoseCalculator : MonoBehaviour
         return unityPose;
     }
 
-    Vector3 GetRelativePosition(Vector3 worldPosition)
+    public static Vector3 GetRelativePosition(Transform t, Vector3 worldPosition)
     {
-        return mapTransform.TransformPoint(worldPosition);
+        return t.TransformPoint(worldPosition);
     }
 
-    public Quaternion GetRelativeRotation(Quaternion worldRotation)
+    public static Quaternion GetRelativeRotation(Transform t, Quaternion worldRotation)
     {
-        return worldRotation * mapTransform.rotation;
+        return worldRotation * t.rotation;
     }
 }

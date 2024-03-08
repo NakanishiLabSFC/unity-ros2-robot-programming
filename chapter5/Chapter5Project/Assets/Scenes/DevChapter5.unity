@@ -2162,8 +2162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapTransformer: {fileID: 949269407}
   turtlebot3Obj: {fileID: 1670145315}
-  parentFrameName: map
-  targetFrameName: odom
+  parentFrameName: odom
+  targetFrameName: base_footprint
 --- !u!1 &1945604736
 GameObject:
   m_ObjectHideFlags: 0
