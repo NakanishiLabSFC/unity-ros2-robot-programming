@@ -10,6 +10,7 @@ public class GoalPublisher : MonoBehaviour
     [SerializeField] string goalTopicName;
     [SerializeField] string initialPoseTopicName;
     [SerializeField] SetGoal setGoal;
+    [SerializeField] bool sendInitialPoseOnStart = true;
     ROSConnection ros;
 
     void Start()
@@ -17,7 +18,7 @@ public class GoalPublisher : MonoBehaviour
         ros = ROSConnection.GetOrCreateInstance();
         ros.RegisterPublisher<PoseStampedMsg>(goalTopicName);
         ros.RegisterPublisher<PoseWithCovarianceStampedMsg>(initialPoseTopicName);
-        SendInitialPose();
+        if (sendInitialPoseOnStart) SendInitialPose();
     }
 
     public void SendInitialPose() {
