@@ -22,12 +22,13 @@ def generate_launch_description():
             get_package_share_directory('turtlebot3_bringup_custom'), #<<編集箇所-2
             'params',
             TURTLEBOT3_MODEL + '_' +  ROS_NAMESPACE + '.yaml')) #<<編集箇所-3
-    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-
+    
     if LDS_MODEL == 'LDS-01':
         LDS_LAUNCH_FILE = '/hlds_laser_custom.launch.py'
     elif LDS_MODEL == 'LDS-02':
         LDS_LAUNCH_FILE = '/ld08_custom.launch.py'
+
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     
     scan_frame_id = 'base_scan' #<<編集箇所-4
     if(len(ROS_NAMESPACE) != 0):

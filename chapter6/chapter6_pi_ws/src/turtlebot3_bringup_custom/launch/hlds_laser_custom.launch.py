@@ -7,10 +7,9 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    ROS_NAMESPACE = os.environ['ROS_NAMESPACE'] #<<編集箇所-1
-
     port = LaunchConfiguration('port', default='/dev/ttyUSB0')
     frame_id = LaunchConfiguration('frame_id', default='base_scan')
+    ROS_NAMESPACE = os.environ['ROS_NAMESPACE'] #<<編集箇所-1
 
     return LaunchDescription([  
         DeclareLaunchArgument(
