@@ -4,6 +4,9 @@ using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Tf2;
 
+/// <summary>
+/// TFトピックをサブスクライブしてロボットの絶対座標を計算するスクリプト
+/// </summary>
 public class TFPoseCalculator : MonoBehaviour
 {
     [SerializeField] MapTransformer mapTransformer;
@@ -28,7 +31,7 @@ public class TFPoseCalculator : MonoBehaviour
     {
         mapFrameTransform.position = mapFramePose.position;
         mapFrameTransform.rotation = mapFramePose.rotation;
-
+        // odomフレームの座標をmapフレーム基準に変換する
         turtlebot3Obj.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
         turtlebot3Obj.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
     }
@@ -46,6 +49,9 @@ public class TFPoseCalculator : MonoBehaviour
     }
 }
 
+/// <summary>
+/// TFの計算に使用する関数群
+/// </summary>
 public static class TFUtility {
     public static Pose ConvertToUnityPose(Vector3Msg rosPosMsg, QuaternionMsg rosQuaternionMsg)
     {

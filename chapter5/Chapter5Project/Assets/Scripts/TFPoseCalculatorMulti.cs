@@ -2,6 +2,9 @@ using UnityEngine;
 using Unity.Robotics.ROSTCPConnector;
 using RosMessageTypes.Tf2;
 
+/// <summary>
+/// 複数台のTFトピックをサブスクライブしてロボットの絶対座標を計算するスクリプト
+/// </summary>
 public class TFPoseCalculatorMulti : MonoBehaviour
 {
     [SerializeField] MapTransformer mapTransformer;

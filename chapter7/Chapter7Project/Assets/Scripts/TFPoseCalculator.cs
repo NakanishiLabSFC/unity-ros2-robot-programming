@@ -28,7 +28,7 @@ public class TFPoseCalculator : MonoBehaviour
     {
         mapFrameTransform.position = mapFramePose.position;
         mapFrameTransform.rotation = mapFramePose.rotation;
-        
+        // odomフレームの座標をmapフレーム基準に変換する
         var pos = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position);
         turtlebot3Obj.transform.position = new Vector3(
             pos.x, offsetTurtlebot3Height/2, pos.z
