@@ -1484,6 +1484,10 @@ PrefabInstance:
       propertyPath: m_Offset.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1305978815096875101, guid: 7e8ecfd17cd58c247916864b74797f3f, type: 3}
+      propertyPath: m_TFTrackingSettings.type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1341703867306652306, guid: 7e8ecfd17cd58c247916864b74797f3f, type: 3}
       propertyPath: m_ID
       value: 1341703867306652306-1563164224
@@ -2145,8 +2149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapTransformer: {fileID: 949269407}
   turtlebot3Obj: {fileID: 1670145315}
-  parentFrameName: odom
-  targetFrameName: base_footprint
+  mapChildFrameName: odom
+  odomChildFrameName: base_footprint
 --- !u!1 &1945604736
 GameObject:
   m_ObjectHideFlags: 0
