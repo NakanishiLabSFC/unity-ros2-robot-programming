@@ -68,13 +68,13 @@ public static class TFUtility {
         return unityPose;
     }
 
-    public static Vector3 GetRelativePosition(Transform t, Vector3 worldPosition)
+    public static Vector3 GetRelativePosition(Transform t, Vector3 pos)
     {
-        return t.TransformPoint(worldPosition);
+        return t.TransformPoint(pos);
     }
 
-    public static Quaternion GetRelativeRotation(Transform t, Quaternion worldRotation)
+    public static Quaternion GetRelativeRotation(Transform t, Quaternion rot)
     {
-        return worldRotation * t.rotation;
+        return rot * t.rotation;
     }
 }
