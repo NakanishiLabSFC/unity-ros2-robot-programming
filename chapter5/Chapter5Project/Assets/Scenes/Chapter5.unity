@@ -690,9 +690,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapObj: {fileID: 315942022}
-  pixelSize: {x: 164, y: 110}
+  pixelSize: {x: 114, y: 141}
   resolution: 0.05
-  origin: {x: -3.55, y: -1.45}
+  origin: {x: -2.15, y: -3.25}
   mapSizeScale: 0.6
 --- !u!1 &963194225
 GameObject:
