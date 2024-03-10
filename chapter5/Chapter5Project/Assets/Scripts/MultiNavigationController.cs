@@ -1,12 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 [System.Serializable]
 public class NavigationRobot {
     public string rosNamespace;
     public Color color;
     public GameObject turtlebot3Obj;
+    [NonSerialized] public string mapFrameName;
+    [NonSerialized] public string odomFrameName;
+    [NonSerialized] public Pose mapFramePose = new Pose();
+    [NonSerialized] public Pose odomFramePose = new Pose();
 }
 
 public class MultiNavigationController : MonoBehaviour

@@ -537,29 +537,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 488098158}
-  - component: {fileID: 488098157}
+  - component: {fileID: 488098159}
   m_Layer: 0
-  m_Name: TFSubscriber
+  m_Name: TFPoseCalculator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &488098157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488098156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76193bcdbfb725f42887453d77001c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topicName: tf
-  turtlebot3Obj: {fileID: 538926062}
-  offsetTurtlebot3Height: 0.095
 --- !u!4 &488098158
 Transform:
   m_ObjectHideFlags: 0
@@ -575,6 +560,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488098159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488098156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ce43c9a9228437d89547ec9504a256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turtlebot3Obj: {fileID: 538926062}
+  mapChildFrameName: odom
+  odomChildFrameName: base_footprint
+  offsetTurtlebot3Height: 0.19
 --- !u!1 &493113766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2364,7 @@ MonoBehaviour:
   goalTopicName: goal_pose_unity
   initialPoseTopicName: /initialpose
   setGoal: {fileID: 852059269}
+  sendInitialPoseOnStart: 1
 --- !u!4 &1559593279
 Transform:
   m_ObjectHideFlags: 0

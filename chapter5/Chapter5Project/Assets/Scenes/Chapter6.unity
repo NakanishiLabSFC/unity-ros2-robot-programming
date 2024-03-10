@@ -1685,6 +1685,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010013870}
   m_CullTransparentMesh: 1
+--- !u!1 &1111716173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7193385208511692935, guid: 9b3b194fd288c611f92e8ba2da94a474, type: 3}
+  m_PrefabInstance: {fileID: 1846088202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1149958020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,8 +1897,8 @@ MonoBehaviour:
     color: {r: 0.11897531, g: 0.6415094, b: 0, a: 1}
     turtlebot3Obj: {fileID: 1670145315}
   - rosNamespace: robot2
-    color: {r: 0.9433962, g: 0.86704385, b: 0.21804914, a: 1}
-    turtlebot3Obj: {fileID: 1424864244}
+    color: {r: 0.86824155, g: 0.9056604, b: 0.252047, a: 1}
+    turtlebot3Obj: {fileID: 1111716173}
 --- !u!4 &1199365614
 Transform:
   m_ObjectHideFlags: 0
@@ -2305,11 +2310,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1396902426}
   m_CullTransparentMesh: 1
---- !u!1 &1424864244 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7193385208511692935, guid: 9b3b194fd288c611f92e8ba2da94a474, type: 3}
-  m_PrefabInstance: {fileID: 1846088202}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1450919940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,9 +2793,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1864091003}
   - component: {fileID: 1864091004}
-  - component: {fileID: 1864091005}
   m_Layer: 0
-  m_Name: TFSubscriber
+  m_Name: TFPoseCalculatorMulti
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2823,29 +2822,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864091001}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db43c7012a09361481957ea7e5f45a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topicName: tf
-  mapTransformer: {fileID: 949269407}
-  turtlebot3Obj: {fileID: 0}
---- !u!114 &1864091005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864091001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e3a7c3e3ea94e30498dce281de01764, type: 3}
+  m_Script: {fileID: 11500000, guid: 0912ee27782d20bfab983afb7a792c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topicName: tf
   mapTransformer: {fileID: 949269407}
   multiNavigationController: {fileID: 1199365613}
+  mapChildFrameBaseName: odom
+  odomChildFrameBaseName: base_footprint
 --- !u!1 &1945604736
 GameObject:
   m_ObjectHideFlags: 0
